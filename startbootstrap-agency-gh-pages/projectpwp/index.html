@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+        <meta name="description" content="" />
+        <meta name="author" content="" />
+        <title>Project PWP- Kelompok 9</title>
+        <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+        <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
+        <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css" />
+        <link href="https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700" rel="stylesheet" type="text/css" />
+        <link href="css/styles.css" rel="stylesheet" />
+        <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css"/>
+        <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+        
+        <style>
+            #map {
+                z-index: 1; /* Supaya peta tidak menimpa navbar Bootstrap saat di-scroll */
+            }
+            .legend {
+                background: white;
+                padding: 10px;
+                line-height: 1.5;
+                border-radius: 5px;
+                box-shadow: 0 0 15px rgba(0,0,0,0.2);
+                font-size: 14px;
+            }
+            .legend i {
+                width: 18px;
+                height: 18px;
+                float: left;
+                margin-right: 8px;
+                opacity: 0.8;
+            }
+        </style>
+    </head>
+    <body id="page-top">
+        <nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="mainNav">
+            <div class="container">
+                <a class="navbar-brand" href="#page-top"><img src="assets/img/navbar-logo.svg" alt="..." /></a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+                    Menu
+                    <i class="fas fa-bars ms-1"></i>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarResponsive">
+                    <ul class="navbar-nav text-uppercase ms-auto py-4 py-lg-0">
+                        <li class="nav-item"><a class="nav-link" href="#services">Background</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#about">Data dan Metode</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#contact">Hasil</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#portfolio">Analisis</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#team">Team</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+<header class="masthead">
+    <div class="container">
+        <div class="masthead-subheading">Project Kelompok 9</div>
+        
+        <div class="masthead-heading text-uppercase mb-4">
+            Analisis Perubahan Spasial Kawasan Pesisir Berbasis Time Series akibat Aktivitas Pariwisata di Pantai Bandengan, Jepara
+        </div>
+
+        <div class="masthead-description" style="font-size: 1.2rem; margin-top: 10px;">
+            Proyek ini bertujuan menganalisis perubahan spasial kawasan pesisir Pantai Bandengan, Jepara, selama 2016–2026 menggunakan data time series dari Google Earth Engine (GEE) untuk mengidentifikasi dampak aktivitas pariwisata, yang disajikan dalam peta interaktif.
+        </div>
+
+        <a class="btn btn-primary btn-xl text-uppercase mt-4" href="#services">Click Here</a>
+    </div>
+</header>
+        <section class="page-section" id="services">
+            <section id="services" class="py-5">
+                <div class="container">
+                  <div class="row align-items-center">
+                    <div class="col-md-6">
+                    <h2 class="mb-4">Deskripsi</h2>
+                    <p class="text-muted">
+                        Kawasan pesisir Pantai Bandengan di Kabupaten Jepara mengalami tekanan yang semakin meningkat akibat perkembangan aktivitas pariwisata dalam beberapa tahun terakhir. Peningkatan jumlah wisatawan mendorong pembangunan fasilitas seperti penginapan, area rekreasi, dan infrastruktur pendukung lainnya, yang berpotensi mengubah kondisi alami pesisir. Perubahan ini dapat terlihat dari dinamika garis pantai, alih fungsi lahan, serta perubahan tutupan lahan yang terjadi antara tahun 2016 hingga 2026. Oleh karena itu, analisis berbasis time series menggunakan Google Earth Engine (GEE) diperlukan untuk memantau dan mengidentifikasi pola perubahan spasial secara lebih akurat dan berkelanjutan.
+                    </p>
+                    <h2 class="mb-4">Tujuan</h2>
+                    <p class="text-muted">
+                     1. Pesisir adalah zona dinamis yang rentan terjadi abrasi maupun akresi <br>
+                     2. Aktivitas pariwisata yang tinggi menyebabkan tekanan pada ekosistem, seperti pembangunan infrastruktur dan peningkatan aktivitas manusia yang berdampak pada pengurangan vegetasi pesisir, perubahan garis pantai, dan penurunan kualitas lingkungan
+                    </p>
+
+                    </div>
+              
+                    <div class="col-md-6 text-center">
+                      <img src="assets/img/Raudya.JPG" alt="Foto Profil"
+                        class="img-fluid shadow" style="max-width: 75%; height: auto; border-radius: 10px;">
+                    </div>
+                  </div>
+                </div>
+              </section>
+ 
+        <section class="page-section" id="about">
+            <div class="container">
+                <div class="text-center">
+                    <h2 class="section-heading text-uppercase">Data dan Metode</h2>
+                    <h3 class="section-subheading text-muted">Data dan Metode yang Digunakan</h3>
+                </div>
+                <ul class="timeline">
+                    <li>
+                        <div class="timeline-image"><img class="rounded-circle img-fluid" src="assets/img/about/1.png" alt="..." /></div>
+                        <div class="timeline-panel">
+                            <div class="timeline-heading">
+                                <h4>Data yang Digunakan</h4>
+                            </div>
+                            <div class="timeline-body"><p class="text-muted">Data yang digunakan berupa citra satelit multi-temporal di kawasan Bandengan yang ditentukan berdasarkan titik koordinat sebagai area studi. Citra yang digunakan adalah Sentinel-2 tahun 2016 dan 2026, yang kemudian dikomposit menggunakan metode median untuk mengurangi pengaruh awan dan noise.
+</p></div>
+                        </div>
+                    </li>
+                    <li class="timeline-inverted">
+                        <div class="timeline-image"><img class="rounded-circle img-fluid" src="assets/img/about/2.jpg" alt="..." /></div>
+                        <div class="timeline-panel">
+                            <div class="timeline-heading">
+                                <h4>Preprocessing Citra</h4>
+                            </div>
+                            <div class="timeline-body"><p class="text-muted">Tahap awal untuk menyiapkan data citra dengan melakukan penyaringan berdasarkan lokasi, waktu, dan tutupan awan, serta membuat komposit median agar citra lebih bersih dari noise dan awan.</p></div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="timeline-image"><img class="rounded-circle img-fluid" src="assets/img/about/3.jpg" alt="..." /></div>
+                        <div class="timeline-panel">
+                            <div class="timeline-heading">
+                                <h4>Ekstraksi Indeks Spektral (NDWI)</h4>
+                            </div>
+                            <div class="timeline-body"><p class="text-muted">Menghitung nilai NDWI untuk menonjolkan perbedaan antara air dan daratan, karena air memiliki respon spektral yang khas dibanding objek lain.</p></div>
+                        </div>
+                    </li>
+                    <li class="timeline-inverted">
+                        <div class="timeline-image"><img class="rounded-circle img-fluid" src="assets/img/about/4.jpg" alt="..." /></div>
+                        <div class="timeline-panel">
+                            <div class="timeline-heading">
+                                <h4>Klasifikasi (Threshold-based)</h4>
+                            </div>
+                            <div class="timeline-body"><p class="text-muted">Mengelompokkan piksel menjadi air dan darat menggunakan nilai ambang sederhana (threshold) dari NDWI, yaitu nilai > 0 sebagai air dan ≤ 0 sebagai darat.</p></div>
+                        </div>
+                    </li>
+                                        <li>
+                        <div class="timeline-image"><img class="rounded-circle img-fluid" src="assets/img/about/5.jpg" alt="..." /></div>
+                        <div class="timeline-panel">
+                            <div class="timeline-heading">
+                                <h4>Change Detection</h4>
+                            </div>
+                            <div class="timeline-body"><p class="text-muted">Menganalisis perubahan dengan membandingkan hasil klasifikasi dua waktu (2016 dan 2026) untuk mengetahui area yang mengalami abrasi, akresi, atau tidak berubah.</p></div>
+                        </div>
+                    </li>
+                                        <li class="timeline-inverted">
+                        <div class="timeline-image"><img class="rounded-circle img-fluid" src="assets/img/about/6.jpg" alt="..." /></div>
+                        <div class="timeline-panel">
+                            <div class="timeline-heading">
+                                <h4>Visualisasi</h4>
+                            </div>
+                            <div class="timeline-body"><p class="text-muted">Menampilkan hasil dalam bentuk peta (RGB, NDWI, dan peta perubahan) agar perubahan wilayah dapat terlihat dan mudah diinterpretasikan.</p></div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </section>
+
+        <section class="page-section bg-light"  id="contact">
+            <div class="container">
+                <div class="text-center">
+                </div>
+        <section class="page-section" id="map-section">
+            <div class="container">
+                <div class="text-center">
+                    <h2 class="section-heading text-uppercase text-dark">Peta Before-After | Time Series | Grafik Perubahan</h2>
+                    <p class="text-muted">Hasil analisis dari Google Earth Engine</p>
+                </div>
+                
+                <div id="map" class="mb-5" style="height: 500px; border-radius: 10px;"></div>
+                <script>
+                    // Inisialisasi Peta
+                    var map = L.map('map').setView([-6.574, 110.605], 14);
+
+                    // Basemap Satelit
+                    var googleSat = L.tileLayer('https://{s}.google.com/vt/lyrs=s&x={x}&y={y}&z={z}', {
+                        maxZoom: 20,
+                        subdomains: ['mt0', 'mt1', 'mt2', 'mt3'],
+                        attribution: '© Google Maps'
+                    }).addTo(map);
+
+                    // URL DARI GEE
+                    var url_ndwi_2016 = "https://earthengine.googleapis.com/v1/projects/ee-luluknurazizah2605/maps/cd4c086de4f0d18afb84b315d20fb41e-bd0f32af03536871ba08247665cf6adc/tiles/{z}/{x}/{y}";
+                    var url_ndwi_2026 = "https://earthengine.googleapis.com/v1/projects/ee-luluknurazizah2605/maps/b7d07bbd8804d19c264e7ad8ae2f7ed0-b11d94bc2d2a57bfc8ca6a8e383607d0/tiles/{z}/{x}/{y}";
+                    var url_change = "https://earthengine.googleapis.com/v1/projects/ee-luluknurazizah2605/maps/1d38ca018fe4544604eacb8b4aace310-4d4b092a4be80259e87d3e7836184afc/tiles/{z}/{x}/{y}";
+
+                    // MEMBUAT LAYER LEAFLET
+                    var layerNDWI2016 = L.tileLayer(url_ndwi_2016, {attribution: '© GEE'});
+                    var layerNDWI2026 = L.tileLayer(url_ndwi_2026, {attribution: '© GEE'});
+                    var layerChange = L.tileLayer(url_change, {attribution: '© GEE'});
+
+                    // Jadikan layer Change sebagai layer default yang menyala
+                    layerChange.addTo(map);
+
+                    // MEMBUAT LAYER CONTROL (KOTAK CENTANG)
+                    var baseMaps = {
+                        "Google Satellite": googleSat
+                    };
+                    var overlayMaps = {
+                        "Peta Perubahan 2016-2026": layerChange,
+                        "NDWI 2016": layerNDWI2016,
+                        "NDWI 2026": layerNDWI2026
+                    };
+
+                    L.control.layers(baseMaps, overlayMaps, {collapsed: false}).addTo(map);
+
+                    // MEMBUAT LEGENDA
+                    var legend = L.control({position: 'bottomright'});
+                    legend.onAdd = function (map) {
+                        var div = L.DomUtil.create('div', 'legend');
+                        div.innerHTML += '<strong>Keterangan Peta</strong><br><br>';
+                        div.innerHTML += '<i style="background: green"></i> Daratan bertambah<br>';
+                        div.innerHTML += '<i style="background: red"></i> Daratan berkurang<br>';
+                        div.innerHTML += '<i style="background: white; border: 1px solid #ccc;"></i> Tidak berubah<br>';
+                        return div;
+                    };
+                    legend.addTo(map);
+                </script>
+            </div>
+            
+
+<div class="row justify-content-center align-items-center">
+    
+    <!-- Video -->
+    <div class="col-md-6 text-center">
+        <video class="shadow rounded mb-4 w-80" 
+               autoplay loop muted playsinline>
+            <source src="assets/video/video.mp4" type="video/mp4">
+        </video>
+    </div>
+
+    <!-- Gambar -->
+    <div class="col-md-6 text-center">
+        <img src="assets/img/contoh.jpeg" 
+             class="img-fluid shadow rounded mb-4 w-100" 
+             alt="Gambar">
+    </div>
+
+</div>
+        </section>
+               <section class="page-section bg-light" id="portfolio">
+            <div class="container">
+                <div class="text-center">
+                    <h2 class="section-heading text-uppercase text-dark">Analisis</h2>
+                </div>
+                <div class="row">
+                    <div class="col-lg-4 col-sm-6 mb-4">
+                        <div class="portfolio-item">
+                            <a class="portfolio-link" data-bs-toggle="modal" href="#portfolioModal1">
+                                <div class="portfolio-hover">
+                                    <div class="portfolio-hover-content"><i class="fas fa-plus fa-3x"></i></div>
+                                </div>
+                                <img class="img-fluid" src="assets/img/portfolio/1.jpg" alt="..." />
+                            </a>
+                            <div class="portfolio-caption">
+                                <div class="portfolio-caption-heading">Peta Before-After</div>
+                                <div class="portfolio-caption-subheading text-muted">Peta Perubahan Tahun 2016 dan 2026</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-sm-6 mb-4">
+                        <div class="portfolio-item">
+                            <a class="portfolio-link" data-bs-toggle="modal" href="#portfolioModal2">
+                                <div class="portfolio-hover">
+                                    <div class="portfolio-hover-content"><i class="fas fa-plus fa-3x"></i></div>
+                                </div>
+                                <img class="img-fluid" src="assets/img/portfolio/2.jpg" alt="..." />
+                            </a>
+                            <div class="portfolio-caption">
+                                <div class="portfolio-caption-heading">Time Series</div>
+                                <div class="portfolio-caption-subheading text-muted">Peta Time Series Tahun 2016-2026</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-sm-6 mb-4">
+                        <div class="portfolio-item">
+                            <a class="portfolio-link" data-bs-toggle="modal" href="#portfolioModal3">
+                                <div class="portfolio-hover">
+                                    <div class="portfolio-hover-content"><i class="fas fa-plus fa-3x"></i></div>
+                                </div>
+                                <img class="img-fluid" src="assets/img/portfolio/3.jpg" alt="..." />
+                            </a>
+                            <div class="portfolio-caption">
+                                <div class="portfolio-caption-heading">Grafik Time Series</div>
+                                <div class="portfolio-caption-subheading text-muted">Dinamika Time Series NDWI Pantai Bandengan Tahun 2016-2026
+                            </div>
+                        </div>
+                    </div>
+        </section>
+        <div class="portfolio-modal modal fade" id="portfolioModal1" tabindex="-1" role="dialog" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="close-modal" data-bs-dismiss="modal"><img src="assets/img/close-icon.svg" alt="Close modal" /></div>
+                    <div class="container">
+                        <div class="row justify-content-center">
+                            <div class="col-lg-8">
+                                <div class="modal-body">
+                                    <h2 class="text-uppercase mb-4">Peta Before-After</h2>
+                                    <img class="img-fluid d-block mx-auto" src="assets/img/portfolio/1.jpg" style="max-width: 60%; height: auto;" alt="..." />
+                                    <p>Perbandingan citra menunjukkan perubahan bentuk daratan yang cukup signifikan, bagian selatan mengalami penambahan massa daratan (indikasi akresi/reklamasi), sementara sisi barat menunjukkan perubahan akibat abrasi maupun modifikasi fisik untuk fasilitas wisata.</p>
+                                    <p>GeoAI membantu analisis dengan mengotomatisasi ekstraksi fitur dan pemrosesan big data spasial secara instan melalui infrastruktur komputasi awan. Alih-alih melakukan digitasi batas pantai secara manual, algoritma secara matematis membedakan daratan dan air menggunakan indeks spektral (NDWI), menyaring tutupan awan, dan menggabungkan ratusan citra Sentinel-2 dari 2016 hingga 2026 dalam hitungan detik. Sistem ini juga langsung menghitung selisih luasan piksel (change detection) untuk memetakan luasan abrasi dan akresi sekaligus menampilkan angka persentase perubahannya secara otomatis dan presisi.</p>
+                                    <p>Tanpa infrastruktur GeoAI, analisis ini mustahil dilakukan karena keterbatasan perangkat komputasi lokal (laptop/PC standar) yang tidak akan sanggup mengunduh dan memproses ratusan gigabyte data mentah satelit selama satu dekade. Selain itu, sangat tidak mungkin bagi tenaga manusia untuk membandingkan perubahan nilai indeks pada setiap piksel secara manual dari minggu ke minggu selama 10 tahun berturut-turut demi menghasilkan grafik time-series dan deteksi luasan yang konsisten.</p>
+                                    <ul class="list-inline">
+                                    </ul>
+                                    <button class="btn btn-primary btn-xl text-uppercase" data-bs-dismiss="modal" type="button">
+                                        <i class="fas fa-xmark me-1"></i>
+                                        Close Project
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="portfolio-modal modal fade" id="portfolioModal2" tabindex="-1" role="dialog" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="close-modal" data-bs-dismiss="modal"><img src="assets/img/close-icon.svg" alt="Close modal" /></div>
+                    <div class="container">
+                        <div class="row justify-content-center">
+                            <div class="col-lg-8">
+                                <div class="modal-body">
+                                    <h2 class="text-uppercase mb-4">Peta Time Series Tahun 2016-2026</h2>
+                                    <img class="img-fluid d-block mx-auto" src="assets/img/portfolio/2.jpg" style="max-width: 60%; height: auto;" alt="..." />
+                                    <p>Citra time series memperlihatkan perkembangan struktur fisik kawasan secara bertahap seperti dermaga, bangunan, dan infrastruktur wisata yang makin padat dari tahun ke tahun, disertai perubahan konfigurasi garis pantai yang mencolok di sekitar area dermaga.</p>
+                                    <p>Hasil analisis perubahan kawasan pesisir Pantai Bandengan berdasarkan perbandingan citra tahun 2016 dan 2026 menunjukkan adanya dinamika spasial yang cukup signifikan. Pada peta before-after terlihat bahwa bagian selatan mengalami penambahan daratan yang mengindikasikan adanya proses akresi atau reklamasi, sementara di sisi barat terjadi perubahan yang diduga akibat abrasi serta modifikasi fisik untuk mendukung fasilitas wisata. Hal ini juga diperkuat oleh visualisasi time series yang memperlihatkan perkembangan infrastruktur seperti dermaga, bangunan, dan fasilitas wisata yang semakin padat dari tahun ke tahun, disertai perubahan garis pantai yang cukup mencolok. Selain itu, grafik NDWI menunjukkan tren penurunan secara bertahap yang mengindikasikan berkurangnya vegetasi basah serta meningkatnya pengerasan lahan akibat aktivitas pembangunan, meskipun tetap dipengaruhi oleh faktor musiman.</p>
+                                    <P>Perubahan ini melibatkan berbagai aktor seperti pemerintah daerah, masyarakat setempat, dinas pariwisata, dan investor, yang masing-masing memiliki kepentingan berbeda dalam pemanfaatan wilayah pesisir. Kondisi ini berpotensi menimbulkan konflik, baik antara kepentingan ekonomi dan kelestarian lingkungan, konflik ruang dengan nelayan tradisional, hingga konflik sosial akibat perubahan akses lahan dan mata pencaharian. Dari sisi lingkungan, dampak yang ditimbulkan antara lain berkurangnya vegetasi pesisir seperti mangrove, perubahan dinamika garis pantai, serta penurunan kualitas lingkungan perairan. Sementara itu, bagi masyarakat, meskipun terdapat peluang ekonomi dari sektor pariwisata, juga muncul risiko seperti hilangnya akses nelayan dan meningkatnya kerentanan terhadap bencana pesisir akibat melemahnya fungsi perlindungan alami ekosistem.</P>
+                                    <ul class="list-inline">
+                                    </ul>
+                                    <button class="btn btn-primary btn-xl text-uppercase" data-bs-dismiss="modal" type="button">
+                                        <i class="fas fa-xmark me-1"></i>
+                                        Close Project
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="portfolio-modal modal fade" id="portfolioModal3" tabindex="-1" role="dialog" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="close-modal" data-bs-dismiss="modal"><img src="assets/img/close-icon.svg" alt="Close modal" /></div>
+                    <div class="container">
+                        <div class="row justify-content-center">
+                            <div class="col-lg-8">
+                                <div class="modal-body">
+                                    <h2 class="text-uppercase mb-4">Grafik Time Series</h2>
+                                    <img class="img-fluid d-block mx-auto" src="assets/img/portfolio/3.jpg" style="max-width: 60%; height: auto;" alt="..." />
+                                    <p>Tren nilai NDWI yang cenderung menurun secara gradual menunjukkan adanya perubahan kondisi lingkungan pesisir yang cukup signifikan. Penurunan ini mengindikasikan berkurangnya tutupan vegetasi basah, seperti mangrove atau vegetasi pantai lainnya, yang umumnya memiliki kandungan air tinggi. Selain itu, fenomena ini juga dapat dikaitkan dengan meningkatnya aktivitas pembangunan di kawasan pesisir, seperti pembangunan fasilitas wisata, infrastruktur, maupun area terbangun lainnya yang menyebabkan terjadinya pengerasan lahan. Pengerasan lahan ini mengurangi kemampuan tanah dalam menyerap air, sehingga nilai NDWI ikut menurun.</p>
+                                    <p>Di sisi lain, faktor musiman juga turut memengaruhi fluktuasi nilai NDWI. Perubahan musim, terutama antara musim hujan dan kemarau, menyebabkan variasi kandungan air di permukaan lahan dan vegetasi. Namun demikian, meskipun terdapat fluktuasi musiman, tren jangka panjang yang menunjukkan penurunan tetap menjadi indikasi bahwa kondisi lingkungan pesisir secara keseluruhan mengalami degradasi. Hal ini dapat berdampak pada menurunnya kualitas ekosistem pesisir, seperti berkurangnya fungsi perlindungan alami terhadap abrasi serta menurunnya keanekaragaman hayati.</p>
+                                    <p>Dengan demikian, dapat disimpulkan bahwa penurunan nilai NDWI dari waktu ke waktu tidak hanya dipengaruhi oleh faktor alami, tetapi juga sangat erat kaitannya dengan aktivitas manusia. Oleh karena itu, diperlukan upaya pengelolaan kawasan pesisir yang lebih berkelanjutan agar keseimbangan antara pembangunan dan kelestarian lingkungan tetap terjaga.</p>
+                                    <ul class="list-inline">
+                                    </ul>
+                                    <button class="btn btn-primary btn-xl text-uppercase" data-bs-dismiss="modal" type="button">
+                                        <i class="fas fa-xmark me-1"></i>
+                                        Close Project
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+<!-- Team -->
+<section class="page-section bg-light" id="team">
+    <div class="container">
+        <div class="text-center">
+            <h2 class="section-heading text-uppercase text-dark">Our Team</h2>
+            <h3 class="section-subheading text-muted">Kelompok 9</h3>
+        </div>
+
+        <!-- ROW 1 (4 ORANG) -->
+        <div class="row justify-content-center">
+            <div class="col-lg-3 col-md-6">
+                <div class="team-member">
+                    <img class="mx-auto rounded-circle" src="assets/img/team/1.jpeg" alt="">
+                    <h4>Luluk Nur Azizah</h4>
+                    <p class="text-muted">22/494008/TK/54156</p>
+                </div>
+            </div>
+
+            <div class="col-lg-3 col-md-6">
+                <div class="team-member small-team">
+                    <img class="mx-auto rounded-circle" src="assets/img/team/2.jpeg" alt="">
+                    <h4>Erlinda Ramadhani</h4>
+                    <p class="text-muted">22/494460/TK/54230</p>
+                </div>
+            </div>
+
+            <div class="col-lg-3 col-md-6">
+                <div class="team-member">
+                    <img class="mx-auto rounded-circle" src="assets/img/team/3.jpeg" alt="">
+                    <h4>Dealanza Maharani Elyzabeth</h4>
+                    <p class="text-muted">22/494576/TK/54261</p>
+                </div>
+            </div>
+
+            <div class="col-lg-3 col-md-6">
+                <div class="team-member">
+                    <img class="mx-auto rounded-circle" src="assets/img/team/4.jpeg" alt="">
+                    <h4>Alicia Filzah Rivai</h4>
+                    <p class="text-muted">22/497279/TK/54493</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- ROW 2 (3 ORANG) -->
+        <div class="row justify-content-center mt-4">
+            <div class="col-lg-4 col-md-6">
+                <div class="team-member">
+                    <img class="mx-auto rounded-circle" src="assets/img/team/5.jpeg" alt="">
+                    <h4>Caecilia Gisela Baba</h4>
+                    <p class="text-muted">22/497796/TK/54574</p>
+                </div>
+            </div>
+
+            <div class="col-lg-4 col-md-6">
+                <div class="team-member">
+                    <img class="mx-auto rounded-circle" src="assets/img/team/6.jpeg" alt="">
+                    <h4>Raudya Khansa Nadhifa</h4>
+                    <p class="text-muted">22/504614/TK/55203</p>
+                </div>
+            </div>
+
+            <div class="col-lg-4 col-md-6">
+                <div class="team-member">
+                    <img class="mx-auto rounded-circle" src="assets/img/team/7.jpeg" alt="">
+                    <h4>Berliana Ayu Iriyanti</h4>
+                    <p class="text-muted">22/504960/TK/55240</p>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</section>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+        <script src="js/scripts.js"></script>
+        <script src="https://cdn.startbootstrap.com/sb-forms-latest.js"></script>
+    </body>
+</html>
